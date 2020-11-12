@@ -8,7 +8,7 @@ public class Manager implements EmployeePosition{
 
     @Override
     public double calcSalary(double baseSalary) {
-        return baseSalary + 0.05 * 1000 * ((Math.random()*25)+115);
+        return Math.ceil((baseSalary + 0.05 * 1000 * ((Math.random()*25)+115))/100)*100;
     }
 
     @Override

@@ -16,8 +16,8 @@ public class Main {
         String surname;
         String name;
         double salary;
-        for (int i = 0; i< 10; i++){
-            a = new Random().nextInt(2);
+        /*for (int i = 0; i< 10; i++){
+            a = new Random().nextInt(3);
 
             System.out.println("Input salary");
             salary = sc.nextDouble();
@@ -36,12 +36,57 @@ public class Main {
                 }
             }
 
+        }*/
+
+        for (int i = 0; i<180; i++){
+            salary = Math.ceil((30000 + Math.random()*10*1000)/100)*100;
+            employees.add(new Employee(surnames[new Random().nextInt(surnames.length)], names[new Random().nextInt(names.length)], salary, new Operator()));
+        }
+
+        for (int i = 0; i<80; i++){
+            salary = 60000;
+            employees.add(new Employee(surnames[new Random().nextInt(surnames.length)], names[new Random().nextInt(names.length)], salary, new Manager()));
+        }
+
+        for (int i = 0; i<10; i++){
+            salary = Math.ceil((80000 + Math.random()*20*1000)/100)*100;
+            employees.add(new Employee(surnames[new Random().nextInt(surnames.length)], names[new Random().nextInt(names.length)], salary, new TopManager(company)));
         }
 
         company.hireAll(employees);
-        ArrayList<Employee> sorted = company.getTopSalaryStaff(5);
-        for (int i = sorted.size()-1; i >= 0; i--){
-            System.out.println(sorted.get(i));
+        ArrayList<Employee> sorted = company.getTopSalaryStaff(15);
+        System.out.println("Top 15 salaries");
+        for (int i = 0; i < 15; i++){
+            System.out.println(Math.round(sorted.get(i).getSalary()) + " руб.");
+        }
+
+        sorted = new ArrayList<>();
+        sorted = company.getLowestSalaryStaff(30);
+        System.out.println("Bottom 30 salaries");
+        for (int i = 0; i < 30; i++){
+            System.out.println(Math.round(sorted.get(i).getSalary()) + " руб.");
+        }
+
+        for (int i = 0; i< 135; i++){
+            company.fire(employees.get(new Random().nextInt(270-i)));
+        }
+
+        /*for (int i = 0; i < 135; i++){
+            System.out.println(employees.get(i));
+        }*/
+
+        sorted = new ArrayList<>();
+        sorted = company.getTopSalaryStaff(15);
+        System.out.println("Top 15 salaries");
+        for (int i = 0; i < 15; i++){
+            System.out.println(Math.round(sorted.get(i).getSalary()) + " руб.");
+        }
+
+        sorted = new ArrayList<>();
+        sorted = company.getLowestSalaryStaff(30);
+        System.out.println("Bottom 30 salaries");
+        for (int i = 0; i < 30; i++){
+            System.out.println(Math.round(sorted.get(i).getSalary()) + " руб.");
         }
     }
 }

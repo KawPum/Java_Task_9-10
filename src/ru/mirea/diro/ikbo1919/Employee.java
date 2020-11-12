@@ -31,6 +31,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return surname + " " + name + ", " + salary + ", " + position;
+        return surname + " " + name + ", " + this.getSalary() + ", " + position;
     }
 }
